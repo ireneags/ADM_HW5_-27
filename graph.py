@@ -15,14 +15,14 @@ from tabulate import tabulate
 
 class Graph:
     '''
-    this is the class that represent the graph object it is builded starting from a dictionary. The graph is represented
-    by a dictionary of dict. {node_1: {node_2: {dictionary of attributes}}}. Where node_1 and node_2 are adjacent nodes
+    this is the class that represent the graph object, which is built starting from a dictionary. The graph is represented
+    by a dictionary of dict. {node_1: {node_2: {dictionary of attributes}}} where node_1 and node_2 are adjacent nodes
     and the dictionary of attributes represents the attributes of the edges such as the weight or the date etc.
     '''
 
     def __init__(self, graph={}):
         '''
-        :param graph: a dictionary that represent the graph. Default is and empty dictionary
+        :param graph: a dictionary that represents the graph. Default is an empty dictionary
 
         this is the constructor of our class
         '''
@@ -33,7 +33,7 @@ class Graph:
 
         :param v: a node that has to be added to the graph
 
-        this method add a node to the graph if and only if the node is not yet in the graph
+        this method adds a node to the graph if and only if the node is not yet in the graph
         '''
         if v not in self.graph:
             self.graph[v] = dict()
@@ -46,7 +46,7 @@ class Graph:
         :param v1: first node
         :param v2: second node
 
-        this method create an edge that goes from v1 to v2
+        this method creates an edge that goes from v1 to v2
         '''
         # if len(self.graph[v1]) == 0:
         if [v2, 0] not in self.graph[v1]:
@@ -63,10 +63,10 @@ class Graph:
         :param v2: second node
         :param attr: attributes that you want to add to the egde. Example weight = 1, date = 20211219
 
-        this method create an edge that goes from v1 to v2, whit all the attributes that are given in input.
-        If the second node is not yet in the adjacency list of the first one an edge will be created and the weight will
-        be set to 1, otherwise the weight will be incremented by one. If two node have already interacted previously the
-        date of the new interaction will be added to the attributes date.
+        this method creates an edge that goes from v1 to v2, witt all the attributes that are given in input.
+        If the second node is not yet in the adjacency list of the first one, an edge will be created and the weight will
+        be set to 1, otherwise the weight will be incremented by one. If two node have already interacted previously, the
+        date of the new interaction is added to the attributes date.
         '''
         # controllo se v2 è tra gli adiacenti di v1
         if v2 not in self.graph[v1]:
@@ -102,8 +102,8 @@ class Graph:
     def get_edges(self, vertex=''):
         '''
 
-        :param vertex: the node of which we want the arcs . If it is empty return all the edges of the graph
-        :return: return a list of tuples that represents the edges
+        :param vertex: the node whose edges we want to retrieve. If it is empty, return all the edges of the graph
+        :return: return a list of tuples that represent the edges
         '''
         list_edges = []
         if vertex == '':
@@ -119,7 +119,7 @@ class Graph:
     def get_adj(self, vertex):
         '''
 
-        :param vertex: the node of which we want the arcs
+        :param vertex: the node of which we want the edges
         :return: return the list of the adjacents
         '''
         return list(self.graph[vertex].keys())
@@ -165,8 +165,8 @@ class Graph:
     def check_directed(self):
         '''
 
-        :return: check if the graph is directed or not. Iterate over the nodes of the graph when we find a couple of node
-        such that node1 has node2 in the adjacency list but node2 is not in the adjacency list of node1 then we say that the
+        :return: check if the graph is directed or not. Iterate over the nodes of the graph. When we find a couple of nodes
+        such that node1 has node2 in the adjacency list, but node2 is not in the adjacency list of node1, then we say that the
         graph is directed
         '''
         i = 0
@@ -187,10 +187,10 @@ class Graph:
     def func_1(self):
         '''
 
-        :return: method that compute some metrics about the graph. It compute if the graph is directed, the number of nodes,
+        :return: method that computes some metrics about the graph. It computes if the graph is directed, the number of nodes,
         the number of edges, the density degree of the graph (#edges/#all the possible edges) and if the graph is sparse or
-        not that depends on the desity degree of the graph. if the density is between 0 and 0.5 then the graph is sparse,
-        otherwise is dense.
+        not (which depends on the density degree of the graph: if the density is between 0 and 0.5 then the graph is sparse,
+        otherwise is dense).
         '''
         directed = self.check_directed()
         number_users = len(self.get_vertex())
@@ -215,7 +215,7 @@ class Graph:
         '''
 
         :param node: a node of which want to know the centrality
-        :param start: the begin of an interval of time
+        :param start: the beginning of an interval of time
         :param end: the end of an interval of time
         :param centrality: the type of centrality
         :return: return the centrality measure
@@ -243,7 +243,7 @@ class Graph:
     def get_graph_in_intervall(self, start, end):
         '''
 
-        :param start: the begin of an interval of time
+        :param start: the beginning of an interval of time
         :param end: the end of an interval of time
         :return: return a subgraph with the edges that have the label date between start and end
         '''
@@ -276,7 +276,7 @@ class Graph:
         '''
 
         :param node: a node of the graph
-        :return: the degree centrality of the node. That is computed as (in degree + out degree)/ number of nodes in the graph
+        :return: the degree centrality of the node, computed as (in degree + out degree)/ number of nodes in the graph
         '''
         if len(self.graph[node]) == 0:
             return 'User not in the graph'
@@ -293,7 +293,7 @@ class Graph:
         '''
 
         :param node: a node of the graph
-        :return: the closeness centrality of the node. That is computed as number of nodes/he shortest-path distance that starts from node
+        :return: the closeness centrality of the node, computed as number of nodes/he shortest-path distance that starts from node
         '''
         if node not in self.graph.keys() == 0:
             return 'User not in the graph'
@@ -367,7 +367,7 @@ def dijkstra(G: Graph, startingNode):
     :param G: a graph
     :param startingNode: the starting node
     :return:
-        parents_tree: a dictionary that represent the path from the starting node to the end of the path
+        parents_tree: a dictionary that represents the path from the starting node to the end of the path
         n_costs: a dictionary that has as key a node in the path and as value the cost to reach the node
     '''
     visited = set()
@@ -405,12 +405,12 @@ def page_rank(P, node, range_, vertex_list):
     '''
 
     :param P: the probability matrix of the graph
-    :param node: The node for which we'd like to find its PageRank value
-    :param range_: number of steps after we want to know the pagerank
+    :param node: The node for which we'd like to find the PageRank value
+    :param range_: number of steps after which we want to know the pagerank
     :param vertex_list: the list of nodes of the graph
     :return:
-        if the probabilities converge return the vector. at time t
-        If not return all the vector for every time
+        if the probabilities converge, return the vector at time t.
+        If not, return all the vector for every time
     '''
     q_i_prev = np.array([1 if i == node else 0 for i in vertex_list])
     q_seq = []
@@ -435,7 +435,7 @@ def fill_graph(g: Graph):
 
     :param g: a graph
 
-    this function add to sinks one edge that reach every other node in the graph
+    this function adds to sinks one edge that reaches every other node in the graph
     '''
     s = []
     n_s = []
