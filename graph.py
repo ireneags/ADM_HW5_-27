@@ -15,7 +15,7 @@ from tabulate import tabulate
 
 class Graph:
     '''
-    this is the class that represent the graph object, which is built starting from a dictionary. The graph is represented
+    this is the class that represents the graph object, which is built starting from a dictionary. The graph is represented
     by a dictionary of dict. {node_1: {node_2: {dictionary of attributes}}} where node_1 and node_2 are adjacent nodes
     and the dictionary of attributes represents the attributes of the edges such as the weight or the date etc.
     '''
